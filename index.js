@@ -15,6 +15,6 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => console.log("user disconnected"));
 });
 
-app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
+app.use("/", express.static(__dirname + "/public"));
 
 server.listen(port, () => console.log(`running at http://localhost:${port}`));
