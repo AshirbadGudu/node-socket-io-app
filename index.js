@@ -10,11 +10,9 @@ const io = new Server(server);
 const port = process.env.PORT || 3000;
 
 io.on("connection", (socket) => {
-  console.log(socket);
   console.log("New client connected");
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
+  socket.on("chat message", (msg) => io.emit("chat message", msg));
+  socket.on("disconnect", () => console.log("user disconnected"));
 });
 
 app.get("/", (req, res) => res.sendFile(__dirname + "/index.html"));
